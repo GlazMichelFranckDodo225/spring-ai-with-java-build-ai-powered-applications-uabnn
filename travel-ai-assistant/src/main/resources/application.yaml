@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: travel-ai-assistant
+
+  ai:
+    openai:
+      api-key: ${OPENAI_API_KEY}
