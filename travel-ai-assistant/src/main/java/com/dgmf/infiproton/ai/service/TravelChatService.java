@@ -13,10 +13,22 @@ public class TravelChatService {
 
     public ChatResponse chat(ChatRequest chatRequest) {
         String aiResponse = chatClient
-                .prompt().
-                user(chatRequest.getMessage())
-                .call().
-                content();
+                .prompt()
+                .system("""
+                        You are an AI Travel Assistant.
+                        
+                        Your responsibility:
+                            - Help users plan trips and vacations.
+                            - Keep responses friendly and concise.
+                            
+                        When creating itineraries:
+                            - Recommend exactly 2 attractions per day.
+                            - Recommend 1 local food for each day.
+                            - Keep each day's description under 50 words.
+                        """)
+                .user(chatRequest.getMessage())
+                .call()
+                .content();
 
         return new ChatResponse(aiResponse);
     }
