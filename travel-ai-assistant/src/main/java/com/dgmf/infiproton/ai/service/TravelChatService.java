@@ -4,6 +4,7 @@ import com.dgmf.infiproton.ai.dto.ChatRequest;
 import com.dgmf.infiproton.ai.dto.ChatResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.messages.AssistantMessage;
 import org.springframework.ai.chat.messages.SystemMessage;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -29,6 +30,23 @@ public class TravelChatService {
     public ChatResponse chat(ChatRequest chatRequest) {
         Prompt prompt = new Prompt(
                 new SystemMessage(SYSTEM_PROMPT),
+                new UserMessage("Show me a 2-day itinerary for Japan"),
+                // Few-shot prompting
+                new AssistantMessage("""
+                        Day 1
+                            Attractions:
+                                - Senso-ji Temple
+                                - Tokyo Skytree
+                            Food:
+                                - Sushi
+                                
+                        Day 2
+                            Attractions:
+                                - Meiji Shrine
+                                - Shibuya Crossing
+                            Food:
+                                - Ramen
+                        """),
                 new UserMessage(chatRequest.getMessage())
         );
 
