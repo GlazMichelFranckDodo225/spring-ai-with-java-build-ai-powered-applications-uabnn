@@ -1,4 +1,4 @@
-package com.dgmf.infiproton.ai.config;
+package com.dgmf.config;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.context.annotation.Bean;

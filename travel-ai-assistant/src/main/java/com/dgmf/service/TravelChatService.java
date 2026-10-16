@@ -1,7 +1,7 @@
-package com.dgmf.infiproton.ai.service;
+package com.dgmf.service;
 
-import com.dgmf.infiproton.ai.dto.ChatRequest;
-import com.dgmf.infiproton.ai.dto.ChatResponse;
+import com.dgmf.dto.ChatRequest;
+import com.dgmf.dto.ChatResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.messages.Message;

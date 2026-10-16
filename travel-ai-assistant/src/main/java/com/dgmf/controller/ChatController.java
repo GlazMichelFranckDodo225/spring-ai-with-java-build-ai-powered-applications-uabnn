@@ -1,8 +1,8 @@
-package com.dgmf.infiproton.ai.controller;
+package com.dgmf.controller;
 
-import com.dgmf.infiproton.ai.dto.ChatRequest;
-import com.dgmf.infiproton.ai.dto.ChatResponse;
-import com.dgmf.infiproton.ai.service.TravelChatService;
+import com.dgmf.dto.ChatRequest;
+import com.dgmf.dto.ChatResponse;
+import com.dgmf.service.TravelChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

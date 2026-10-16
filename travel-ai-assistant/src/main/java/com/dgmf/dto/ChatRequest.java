@@ -1,4 +1,4 @@
-package com.dgmf.infiproton.ai.dto;
+package com.dgmf.dto;
 
 import lombok.Data;
 
