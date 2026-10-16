@@ -8,6 +8,8 @@ import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.messages.UserMessage;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -18,26 +20,14 @@ import java.util.Map;
 public class TravelChatService {
     // Injecting the ChatClient to interact with the AI model
     private final ChatClient chatClient;
-    // Defining a system prompt to guide the AI's behavior and responses
-    private final String SYSTEM_PROMPT = """
-                        You are an AI Travel Assistant.
-                        
-                        Your responsibility:
-                            - Help users plan trips and vacations.
-                            - Keep responses friendly and concise.
-                            
-                        When creating itineraries:
-                            - Recommend exactly {attractionsPerDay} attractions per day.
-                            - Recommend {foodsPerDay} local food for each day.
-                            - Keep each day's description under {maxWords} words.
-                        """;
+
+    @Value("classpath:prompts/travel-system-prompt.st")
+    private Resource systemPromptTemplate;
 
     // Method to handle chat requests and generate AI responses
     public ChatResponse chat(ChatRequest chatRequest) {
         // Creating a PromptTemplate with the system prompt
-        PromptTemplate promptTemplate = PromptTemplate.builder()
-                .template(SYSTEM_PROMPT)
-                .build();
+        PromptTemplate promptTemplate = new PromptTemplate(systemPromptTemplate);
 
         // Creating a system message with specific parameters for the prompt
         Message systemMessage = promptTemplate.createMessage(
